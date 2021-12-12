@@ -1,5 +1,6 @@
 package com.frn.frnstore.feature.main
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.frn.frnstore.FrnViewModel
 import com.frn.frnstore.data.Product
@@ -12,20 +13,30 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
-class MainViewModel(val productsRepository: ProductsRepository):FrnViewModel() {
+class MainViewModel(productsRepository: ProductsRepository):FrnViewModel() {
 
-    val liveData = MutableLiveData<List<Product>>()
+    val productLiveData = MutableLiveData<List<Product>>()
+
+    private val _progressBarLiveData = MutableLiveData<Boolean>()
+    val progressBarLiveData:LiveData<Boolean>
+    get() = _progressBarLiveData
+
+
     init {
+
+        _progressBarLiveData.value = true
+
         productsRepository.getProducts()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doFinally{ _progressBarLiveData.value = false}
             .subscribe(object: SingleObserver<List<Product>>{
                 override fun onSubscribe(d: Disposable) {
                     compositeDisposable.add(d)
                 }
 
                 override fun onSuccess(t: List<Product>) {
-                    liveData.value = t
+                    productLiveData.value = t
                 }
 
                 override fun onError(e: Throwable) {

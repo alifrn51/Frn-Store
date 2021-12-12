@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import com.frn.frnstore.FrnFragment
 import com.frn.frnstore.databinding.FragmentMainBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
-class MainFragment: FrnFragment() {
+class MainFragment : FrnFragment() {
 
-    val viewModel:MainViewModel by viewModel()
+    val viewModel: MainViewModel by viewModel()
 
     lateinit var fragmentMainBinding: FragmentMainBinding
     override fun onCreateView(
@@ -24,6 +25,14 @@ class MainFragment: FrnFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         fragmentMainBinding = FragmentMainBinding.bind(view)
+
+        viewModel.productLiveData.observe(viewLifecycleOwner) {
+            Timber.i("size list product ${it.size}")
+        }
+
+        viewModel.progressBarLiveData.observe(viewLifecycleOwner){
+            setProgressIndicator(it)
+        }
 
     }
 

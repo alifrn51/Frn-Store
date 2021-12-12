@@ -1,22 +1,34 @@
-    package com.frn.frnstore.feature.main
+package com.frn.frnstore.feature.main
 
-    import android.os.Bundle
-    import com.frn.frnstore.FrnActivity
-    import com.frn.frnstore.R
-    import timber.log.Timber
-    import org.koin.androidx.viewmodel.ext.android.viewModel
+import android.os.Bundle
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import com.frn.frnstore.FrnActivity
+import com.frn.frnstore.R
+import com.frn.frnstore.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
-    class MainActivity : FrnActivity() {
+class MainActivity : FrnActivity() {
 
-        val viewModel:MainViewModel by viewModel()
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            setContentView(R.layout.activity_main)
+    private lateinit var navController: NavController
+    private lateinit var binding: ActivityMainBinding
 
-            viewModel.liveData.observe(this ){
-                Timber.i(it.toString())
-            }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        }
+        val navHostFragment = supportFragmentManager.findFragmentById(
+            R.id.nav_host_container
+        ) as NavHostFragment
+        navController = navHostFragment.navController
+
+        // Setup the bottom navigation view with navController
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
+        bottomNavigationView.setupWithNavController(navController)
+
+
     }
+}
