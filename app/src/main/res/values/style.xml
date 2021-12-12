@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="MyBottomNavigationView" parent="Widget.MaterialComponents.BottomNavigationView">
+
+        <item name="itemIconTint">@color/bottom_navigation_item_color</item>
+        <item name="itemTextColor">@color/bottom_navigation_item_color</item>
+        <item name="itemTextAppearanceActive">@style/AppearanceActiveItemText</item>
+    </style>
+
+    <style name="AppearanceActiveItemText" parent="TextAppearance.MyTheme.Caption">
+        <item name="fontStyle">italic</item>
+        <item name="android:fontStyle" tools:targetApi="o">italic</item>
+    </style>
+    
+</resources>
