@@ -3,7 +3,10 @@ package com.frn.frnstore.feature.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.frn.frnstore.FrnViewModel
+import com.frn.frnstore.common.FrnSingleObserver
+import com.frn.frnstore.data.Banner
 import com.frn.frnstore.data.Product
+import com.frn.frnstore.data.repo.BannerSliderRepository
 import com.frn.frnstore.data.repo.ProductsRepository
 import io.reactivex.Scheduler
 import io.reactivex.Single
@@ -13,13 +16,17 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
-class MainViewModel(productsRepository: ProductsRepository):FrnViewModel() {
+class MainViewModel(
+    productsRepository: ProductsRepository,
+    bannerSliderRepository: BannerSliderRepository) : FrnViewModel() {
 
     val productLiveData = MutableLiveData<List<Product>>()
 
     private val _progressBarLiveData = MutableLiveData<Boolean>()
-    val progressBarLiveData:LiveData<Boolean>
-    get() = _progressBarLiveData
+    val progressBarLiveData: LiveData<Boolean>
+        get() = _progressBarLiveData
+
+    val bannerSliderLiveData = MutableLiveData<List<Banner>>()
 
 
     init {
@@ -29,21 +36,25 @@ class MainViewModel(productsRepository: ProductsRepository):FrnViewModel() {
         productsRepository.getProducts()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .doFinally{ _progressBarLiveData.value = false}
-            .subscribe(object: SingleObserver<List<Product>>{
-                override fun onSubscribe(d: Disposable) {
-                    compositeDisposable.add(d)
-                }
-
+            .doFinally { _progressBarLiveData.value = false }
+            .subscribe(object : FrnSingleObserver<List<Product>>(compositeDisposable){
                 override fun onSuccess(t: List<Product>) {
                     productLiveData.value = t
                 }
 
-                override fun onError(e: Throwable) {
-                    Timber.e(e.message)
+            })
+
+        bannerSliderRepository.getBannerSlider()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(object : FrnSingleObserver<List<Banner>>(compositeDisposable){
+                override fun onSuccess(t: List<Banner>) {
+                    bannerSliderLiveData.value = t
                 }
 
             })
+
+
     }
 
 }
