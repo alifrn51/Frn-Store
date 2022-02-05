@@ -7,8 +7,8 @@ import io.reactivex.Completable
 import io.reactivex.Single
 
 class ProductRepositoryIml(
-    val productRemoteDataSource: ProductRemoteDataSource,
-    val productLocalDataSource: ProductLocalDataSource
+    private val productRemoteDataSource: ProductRemoteDataSource,
+    private val productLocalDataSource: ProductLocalDataSource
 ) : ProductsRepository {
     override fun getProducts(): Single<List<Product>> = productRemoteDataSource.getProducts()
 

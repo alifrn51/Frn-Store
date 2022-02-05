@@ -5,4 +5,7 @@
     <string name="profile">اطلاعات کاربری</string>
     <string name="lasted_product">جدید ترین</string>
     <string name="all_view">نمایش همه</string>
+    <string name="view_all_comments">همه نظرات</string>
+    <string name="comment_user">نظرات کاربران</string>
+    <string name="list_user_comments">لیست نظرات کاربران</string>
 </resources>

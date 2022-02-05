@@ -22,10 +22,6 @@ class MainViewModel(
 
     val productLiveData = MutableLiveData<List<Product>>()
 
-    private val _progressBarLiveData = MutableLiveData<Boolean>()
-    val progressBarLiveData: LiveData<Boolean>
-        get() = _progressBarLiveData
-
     val bannerSliderLiveData = MutableLiveData<List<Banner>>()
 
 

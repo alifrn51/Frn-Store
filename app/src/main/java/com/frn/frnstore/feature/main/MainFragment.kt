@@ -1,5 +1,6 @@
 package com.frn.frnstore.feature.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,18 +8,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.frn.frnstore.FrnFragment
+import com.frn.frnstore.common.EXTRA_KEY_DATA
 import com.frn.frnstore.common.convertDpToPx
 import com.frn.frnstore.data.Product
 import com.frn.frnstore.databinding.FragmentMainBinding
+import com.frn.frnstore.feature.product.ProductDetailsActivity
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
-class MainFragment : FrnFragment() {
+class MainFragment : FrnFragment() , ProductListAdapter.ProductOnClickListener{
 
     private val viewModel: MainViewModel by viewModel()
-    private val listProduct:ProductListAdapter by inject()
+    private val productListAdapter:ProductListAdapter by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,10 +35,11 @@ class MainFragment : FrnFragment() {
 
         list_lasted_product.layoutManager =
             LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+        list_lasted_product.adapter = productListAdapter
+        productListAdapter.productOnClickListener = this
 
         viewModel.productLiveData.observe(viewLifecycleOwner) {
-            listProduct.listProduct = it as ArrayList<Product>
-            list_lasted_product.adapter = listProduct
+            productListAdapter.listProduct = it as ArrayList<Product>
         }
 
         viewModel.progressBarLiveData.observe(viewLifecycleOwner){
@@ -55,6 +58,12 @@ class MainFragment : FrnFragment() {
 
         }
 
+    }
+
+    override fun onClickProduct(product: Product) {
+        startActivity(Intent(requireContext() , ProductDetailsActivity::class.java).apply {
+            putExtra(EXTRA_KEY_DATA , product)
+        })
     }
 
 }

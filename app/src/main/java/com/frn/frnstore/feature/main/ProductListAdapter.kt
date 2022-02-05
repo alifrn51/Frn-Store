@@ -13,11 +13,12 @@ import com.frn.frnstore.services.imageLoading.ImageLoadingService
 class ProductListAdapter(val imageLoadingService: ImageLoadingService) :
     RecyclerView.Adapter<ProductListAdapter.MyViewHolder>() {
 
+    var productOnClickListener: ProductOnClickListener? = null
     var listProduct = ArrayList<Product>()
-    set(value) {
-        field = value
-        notifyDataSetChanged()
-    }
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var binding: ItemProductBinding = ItemProductBinding.bind(itemView)
@@ -28,8 +29,8 @@ class ProductListAdapter(val imageLoadingService: ImageLoadingService) :
             binding.priceAfter.text = formatPrice(product.price)
             binding.priceBefore.text = formatPrice(product.previous_price)
             binding.root.implementSpringAnimationTrait()
-            binding.root.setOnClickListener{
-
+            binding.root.setOnClickListener {
+                productOnClickListener?.onClickProduct(product)
             }
         }
     }
@@ -47,4 +48,8 @@ class ProductListAdapter(val imageLoadingService: ImageLoadingService) :
         holder.bindView(listProduct[position])
 
     override fun getItemCount(): Int = listProduct.size
+
+    interface ProductOnClickListener {
+        fun onClickProduct(product: Product)
+    }
 }
