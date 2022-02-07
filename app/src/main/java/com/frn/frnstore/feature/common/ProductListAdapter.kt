@@ -1,4 +1,4 @@
-package com.frn.frnstore.feature.main
+package com.frn.frnstore.feature.common
 
 import android.view.LayoutInflater
 import android.view.View

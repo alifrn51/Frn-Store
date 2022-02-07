@@ -11,6 +11,7 @@ import android.view.View
 import androidx.dynamicanimation.animation.DynamicAnimation
 import androidx.dynamicanimation.animation.SpringAnimation
 import androidx.dynamicanimation.animation.SpringForce
+import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -87,3 +88,4 @@ fun View.implementSpringAnimationTrait() {
 }
 
 fun <T> Single<T>.asyncNetworkRequest(): Single<T> = subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+fun Completable.asyncNetworkRequest(): Completable = subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
