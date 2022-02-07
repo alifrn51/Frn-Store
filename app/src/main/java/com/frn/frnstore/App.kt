@@ -8,6 +8,7 @@ import com.frn.frnstore.data.repo.Source.BannerSliderRemoteDataSource
 import com.frn.frnstore.data.repo.Source.CommentRemoteDataSource
 import com.frn.frnstore.data.repo.Source.ProductLocalDataSource
 import com.frn.frnstore.data.repo.Source.ProductRemoteDataSource
+import com.frn.frnstore.feature.listProduct.ListProductViewModel
 import com.frn.frnstore.feature.main.MainViewModel
 import com.frn.frnstore.feature.main.ProductListAdapter
 import com.frn.frnstore.feature.product.ProductDetailsViewModel
@@ -45,10 +46,11 @@ class App : Application() {
                 BannerSliderRepositoryImpl(BannerSliderRemoteDataSource(get()))
             }
             factory<CommentRepository> { CommentRepositoryIml(CommentRemoteDataSource(get())) }
-            factory { ProductListAdapter(get()) }
+            factory { (viewType :Int)->ProductListAdapter(viewType ,get()) }
             viewModel { MainViewModel(get(), get()) }
             viewModel { (bundle: Bundle) -> ProductDetailsViewModel(bundle , get()) }
             viewModel { (productId: Int) -> CommentsViewModel(productId , get()) }
+            viewModel { (sort :Int)-> ListProductViewModel(sort , get()) }
         }
 
         startKoin {

@@ -13,16 +13,16 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("product/list")
-    fun getProducts():Single<List<Product>>
+    fun getProducts(@Query("sort") sort: String): Single<List<Product>>
 
     @GET("banner/slider")
-    fun getBannerSlider():Single<List<Banner>>
+    fun getBannerSlider(): Single<List<Banner>>
 
     @GET("comment/list")
     fun getComments(@Query("product_id") productId: Int): Single<List<Comment>>
 }
 
-fun createApiServiceInstance():ApiService{
+fun createApiServiceInstance(): ApiService {
 
     val retrofit = Retrofit.Builder()
         .baseUrl("http://expertdevelopers.ir/api/v1/")

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:paddingBottom="16dp"
+    android:layout_marginEnd="4dp"
+    android:layout_height="wrap_content">
+
+    <com.frn.frnstore.views.FrnSimpleDraweeView
+        android:id="@+id/image_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:viewAspectRatio="1.3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/titleProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="TextView"
+        android:layout_marginTop="8dp"
+        android:textAppearance="?textAppearanceBody1"
+        android:layout_marginStart="8dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:minLines="2"
+        android:maxLines="2"
+        app:layout_constraintStart_toStartOf="@+id/image_product"
+        app:layout_constraintTop_toBottomOf="@+id/image_product" />
+
+    <TextView
+        android:id="@+id/priceBefore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textAppearance="?textAppearanceBody2"
+        android:textColor="?android:textColorSecondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/titleProduct"
+        app:layout_constraintTop_toBottomOf="@+id/titleProduct" />
+
+    <TextView
+        android:id="@+id/priceAfter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="TextView"
+        android:textAppearance="?textAppearanceBody1"
+        app:layout_constraintEnd_toEndOf="@+id/priceBefore"
+        app:layout_constraintStart_toStartOf="@+id/priceBefore"
+        app:layout_constraintTop_toBottomOf="@+id/priceBefore" />
+
+    <ImageView
+        android:id="@+id/favorite"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/bg_favorite"
+        android:padding="18dp"
+        android:src="@drawable/ic_favorites"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

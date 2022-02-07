@@ -8,4 +8,21 @@
     <string name="view_all_comments">همه نظرات</string>
     <string name="comment_user">نظرات کاربران</string>
     <string name="list_user_comments">لیست نظرات کاربران</string>
+    <string name="list_product">لیست محصولات</string>
+    <string name="sort">مرتب سازی</string>
+    
+    <string name="sortLasted">جدید ترین</string>
+    <string name="sortPopular">پربازدید ترین</string>
+    <string name="sortPriceHeightToLow">گران ترین</string>
+    <string name="sortPriceLowToHeight">ارزان ترین</string>
+
+
+    <string-array name="sort">
+        <item>@string/sortLasted</item>
+        <item>@string/sortPopular</item>
+        <item>@string/sortPriceHeightToLow</item>
+        <item>@string/sortPriceLowToHeight</item>
+    </string-array>
+
+    
 </resources>

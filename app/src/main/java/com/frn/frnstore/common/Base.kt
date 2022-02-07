@@ -48,6 +48,7 @@ interface FrnView {
     fun setProgressIndicator(mustShow: Boolean) {
         rootView?.let {
             var loadingView = it.findViewById<View>(R.id.loading_view)
+
             if (loadingView == null && mustShow) {
                 loadingView = LayoutInflater.from(viewContext).inflate(R.layout.view_loading , rootView , false)
                 it.addView(loadingView)

@@ -11,16 +11,19 @@ import com.frn.frnstore.FrnFragment
 import com.frn.frnstore.common.EXTRA_KEY_DATA
 import com.frn.frnstore.common.convertDpToPx
 import com.frn.frnstore.data.Product
+import com.frn.frnstore.data.SORT_LATEST
 import com.frn.frnstore.databinding.FragmentMainBinding
+import com.frn.frnstore.feature.listProduct.ListProductActivity
 import com.frn.frnstore.feature.product.ProductDetailsActivity
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class MainFragment : FrnFragment() , ProductListAdapter.ProductOnClickListener{
 
     private val viewModel: MainViewModel by viewModel()
-    private val productListAdapter:ProductListAdapter by inject()
+    private val productListAdapter:ProductListAdapter by inject{ parametersOf(VIEW_TYPE_ROUND)}
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,6 +59,13 @@ class MainFragment : FrnFragment() , ProductListAdapter.ProductOnClickListener{
 
             sliderIndicator.setViewPager2(sliderViewPager)
 
+        }
+
+
+        btn_app_view.setOnClickListener{
+            startActivity(Intent( requireContext() , ListProductActivity::class.java).apply {
+                putExtra(EXTRA_KEY_DATA , SORT_LATEST)
+            })
         }
 
     }
