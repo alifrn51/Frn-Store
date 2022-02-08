@@ -1,19 +1,16 @@
 package com.frn.frnstore.feature.product
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.frn.frnstore.FrnActivity
+import com.frn.frnstore.common.FrnActivity
 import com.frn.frnstore.common.*
 import com.frn.frnstore.data.Comment
 import com.frn.frnstore.databinding.ActivityProductBinding
 import com.frn.frnstore.feature.product.comment.CommentsActivity
 import com.frn.frnstore.services.imageLoading.ImageLoadingService
-import com.frn.frnstore.views.scroll.ObservableScrollView
 import com.frn.frnstore.views.scroll.ObservableScrollViewCallbacks
 import com.frn.frnstore.views.scroll.ScrollState
 import io.reactivex.disposables.CompositeDisposable
@@ -46,6 +43,7 @@ class ProductDetailsActivity : FrnActivity() {
             titleProduct.text = product.title
             titleProductToolbar.text = product.title
         }
+
 
         imageProduct.post {
             val productHeight = imageProduct.height

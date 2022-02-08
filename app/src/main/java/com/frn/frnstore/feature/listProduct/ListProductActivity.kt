@@ -1,10 +1,9 @@
 package com.frn.frnstore.feature.listProduct
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
-import com.frn.frnstore.FrnActivity
+import com.frn.frnstore.common.FrnActivity
 import com.frn.frnstore.R
 import com.frn.frnstore.common.EXTRA_KEY_DATA
 import com.frn.frnstore.data.Product

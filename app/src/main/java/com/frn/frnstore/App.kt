@@ -1,10 +1,12 @@
 package com.frn.frnstore
 
 import android.app.Application
+import android.content.SharedPreferences
 import android.os.Bundle
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.frn.frnstore.data.repo.*
 import com.frn.frnstore.data.repo.Source.*
+import com.frn.frnstore.feature.auth.AuthViewModel
 import com.frn.frnstore.feature.common.ProductListAdapter
 import com.frn.frnstore.feature.listProduct.ListProductViewModel
 import com.frn.frnstore.feature.main.MainViewModel
@@ -31,8 +33,23 @@ class App : Application() {
 
 
         val myModel = module {
-            single<ApiService> { createApiServiceInstance() }
+            single { createApiServiceInstance() }
             single<ImageLoadingService> { ImageLoadingServiceImpl() }
+
+            single<SharedPreferences> {
+                this@App.getSharedPreferences(
+                    "app_authentication",
+                    MODE_PRIVATE
+                )
+            }
+
+            single<UserRepository> {
+                UserRepositoryIml(
+                    UserRemoteDataSource(get()),
+                    UserLocalDataSource(get())
+                )
+            }
+
             factory<ProductsRepository> {
                 ProductRepositoryIml(
                     ProductRemoteDataSource(get()),
@@ -40,17 +57,19 @@ class App : Application() {
                 )
             }
             factory<BannerSliderRepository> {
-                BannerSliderRepositoryImpl(BannerSliderRemoteDataSource(get()))
+                BannerSliderRepositoryImpl(
+                    BannerSliderRemoteDataSource(get())
+                )
             }
             factory<CommentRepository> { CommentRepositoryIml(CommentRemoteDataSource(get())) }
             factory<CartRepository> { CartRepositoryIml(CartRemoteDataSource(get())) }
-
             factory { (viewType: Int) -> ProductListAdapter(viewType, get()) }
 
             viewModel { MainViewModel(get(), get()) }
-            viewModel { (bundle: Bundle) -> ProductDetailsViewModel(bundle, get() , get()) }
+            viewModel { (bundle: Bundle) -> ProductDetailsViewModel(bundle, get(), get()) }
             viewModel { (productId: Int) -> CommentsViewModel(productId, get()) }
             viewModel { (sort: Int) -> ListProductViewModel(sort, get()) }
+            viewModel { AuthViewModel(get()) }
         }
 
         startKoin {

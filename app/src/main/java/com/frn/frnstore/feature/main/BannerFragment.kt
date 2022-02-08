@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import com.frn.frnstore.FrnFragment
+import com.frn.frnstore.common.FrnFragment
 import com.frn.frnstore.common.EXTRA_KEY_DATA
 import com.frn.frnstore.data.Banner
 import com.frn.frnstore.databinding.ItemSliderBinding

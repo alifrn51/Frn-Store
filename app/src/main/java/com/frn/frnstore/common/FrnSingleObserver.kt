@@ -12,7 +12,7 @@ abstract class FrnSingleObserver<T>(val compositeDisposable: CompositeDisposable
     }
 
     override fun onError(e: Throwable) {
-        Timber.i(e.message)
         EventBus.getDefault().post(FrnExceptionMapper.map(e))
+        Timber.i(e.message)
     }
 }

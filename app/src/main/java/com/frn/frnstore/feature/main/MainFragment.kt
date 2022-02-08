@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.frn.frnstore.FrnFragment
+import com.frn.frnstore.common.FrnFragment
 import com.frn.frnstore.common.EXTRA_KEY_DATA
 import com.frn.frnstore.common.convertDpToPx
 import com.frn.frnstore.data.Product

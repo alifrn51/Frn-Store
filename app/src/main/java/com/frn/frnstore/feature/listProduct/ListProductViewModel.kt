@@ -1,14 +1,12 @@
 package com.frn.frnstore.feature.listProduct
 
 import androidx.lifecycle.MutableLiveData
-import com.frn.frnstore.FrnViewModel
+import com.frn.frnstore.common.FrnViewModel
 import com.frn.frnstore.R
 import com.frn.frnstore.common.FrnSingleObserver
 import com.frn.frnstore.common.asyncNetworkRequest
 import com.frn.frnstore.data.Product
-import com.frn.frnstore.data.repo.CartRepository
 import com.frn.frnstore.data.repo.ProductsRepository
-import io.reactivex.Completable
 
 class ListProductViewModel(
     var sort: Int,

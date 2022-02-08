@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.frn.frnstore.FrnFragment
+import com.frn.frnstore.common.FrnFragment
 import com.frn.frnstore.databinding.FragmentCartBinding
 
 class CartFragment: FrnFragment() {

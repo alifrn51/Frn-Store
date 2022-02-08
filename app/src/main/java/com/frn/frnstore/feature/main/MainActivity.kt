@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.frn.frnstore.FrnActivity
+import com.frn.frnstore.common.FrnActivity
 import com.frn.frnstore.R
 import com.frn.frnstore.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView

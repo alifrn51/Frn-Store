@@ -2,7 +2,7 @@ package com.frn.frnstore.feature.product
 
 import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
-import com.frn.frnstore.FrnViewModel
+import com.frn.frnstore.common.FrnViewModel
 import com.frn.frnstore.common.EXTRA_KEY_DATA
 import com.frn.frnstore.common.FrnSingleObserver
 import com.frn.frnstore.common.asyncNetworkRequest
@@ -11,9 +11,6 @@ import com.frn.frnstore.data.Product
 import com.frn.frnstore.data.repo.CartRepository
 import com.frn.frnstore.data.repo.CommentRepository
 import io.reactivex.Completable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
 
 class ProductDetailsViewModel(
     bundle: Bundle,

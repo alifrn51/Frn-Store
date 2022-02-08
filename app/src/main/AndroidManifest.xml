@@ -14,6 +14,10 @@
         android:theme="@style/Theme.FrnStore"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".feature.auth.AuthActivity"
+            android:theme="@style/Theme.FrnStore.AuthTheme"
+            android:exported="false" />
+        <activity
             android:name=".feature.listProduct.ListProductActivity"
             android:exported="false" />
         <activity
