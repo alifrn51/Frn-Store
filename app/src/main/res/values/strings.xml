@@ -16,6 +16,7 @@
     <string name="sortPriceHeightToLow">گران ترین</string>
     <string name="sortPriceLowToHeight">ارزان ترین</string>
 
+    <string name="unknown_error">خطای نامشخص</string>
 
     <string-array name="sort">
         <item>@string/sortLasted</item>

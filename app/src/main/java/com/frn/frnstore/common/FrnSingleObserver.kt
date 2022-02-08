@@ -3,6 +3,7 @@ package com.frn.frnstore.common
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import org.greenrobot.eventbus.EventBus
 import timber.log.Timber
 
 abstract class FrnSingleObserver<T>(val compositeDisposable: CompositeDisposable): SingleObserver<T> {
@@ -12,5 +13,6 @@ abstract class FrnSingleObserver<T>(val compositeDisposable: CompositeDisposable
 
     override fun onError(e: Throwable) {
         Timber.i(e.message)
+        EventBus.getDefault().post(FrnExceptionMapper.map(e))
     }
 }
