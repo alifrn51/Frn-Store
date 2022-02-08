@@ -10,6 +10,8 @@
     <com.frn.frnstore.views.scroll.ObservableScrollView
         android:id="@+id/observableScrollview"
         android:layout_width="match_parent"
+        android:paddingBottom="100dp"
+        android:clipToPadding="false"
         android:layout_height="match_parent">
 
         <LinearLayout
@@ -178,4 +180,14 @@
     </com.google.android.material.card.MaterialCardView>
 
 
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/addToCart"
+        android:textColor="?colorOnPrimary"
+        android:gravity="center"
+        android:id="@+id/addToCart"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_margin="16dp"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -6,16 +6,26 @@ import com.frn.frnstore.R
 import com.frn.frnstore.common.FrnSingleObserver
 import com.frn.frnstore.common.asyncNetworkRequest
 import com.frn.frnstore.data.Product
+import com.frn.frnstore.data.repo.CartRepository
 import com.frn.frnstore.data.repo.ProductsRepository
+import io.reactivex.Completable
 
-class ListProductViewModel(var sort: Int, val productRepository: ProductsRepository) :
+class ListProductViewModel(
+    var sort: Int,
+    val productRepository: ProductsRepository
+) :
     FrnViewModel() {
 
 
     val productLiveData = MutableLiveData<List<Product>>()
     val selectedSortLiveData = MutableLiveData<Int>()
 
-    val sortTitle = arrayOf(R.string.sortLasted , R.string.sortPopular , R.string.sortPriceHeightToLow , R.string.sortPriceLowToHeight)
+    val sortTitle = arrayOf(
+        R.string.sortLasted,
+        R.string.sortPopular,
+        R.string.sortPriceHeightToLow,
+        R.string.sortPriceLowToHeight
+    )
 
     init {
         getProducts()
@@ -37,12 +47,11 @@ class ListProductViewModel(var sort: Int, val productRepository: ProductsReposit
     }
 
 
-    fun onSelectedSortChangeByUser(sort:Int){
+    fun onSelectedSortChangeByUser(sort: Int) {
         this.sort = sort
         this.selectedSortLiveData.value = sortTitle[sort]
         getProducts()
 
     }
-
 
 }

@@ -13,6 +13,8 @@ import com.frn.frnstore.common.convertDpToPx
 import com.frn.frnstore.data.Product
 import com.frn.frnstore.data.SORT_LATEST
 import com.frn.frnstore.databinding.FragmentMainBinding
+import com.frn.frnstore.feature.common.ProductListAdapter
+import com.frn.frnstore.feature.common.VIEW_TYPE_ROUND
 import com.frn.frnstore.feature.listProduct.ListProductActivity
 import com.frn.frnstore.feature.product.ProductDetailsActivity
 import kotlinx.android.synthetic.main.fragment_main.*

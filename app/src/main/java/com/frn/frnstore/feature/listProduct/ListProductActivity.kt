@@ -9,10 +9,9 @@ import com.frn.frnstore.R
 import com.frn.frnstore.common.EXTRA_KEY_DATA
 import com.frn.frnstore.data.Product
 import com.frn.frnstore.databinding.ActivityListProductBinding
-import com.frn.frnstore.feature.main.ProductListAdapter
-import com.frn.frnstore.feature.main.VIEW_TYPE_LAGER
-import com.frn.frnstore.feature.main.VIEW_TYPE_ROUND
-import com.frn.frnstore.feature.main.VIEW_TYPE_SMALL
+import com.frn.frnstore.feature.common.ProductListAdapter
+import com.frn.frnstore.feature.common.VIEW_TYPE_LAGER
+import com.frn.frnstore.feature.common.VIEW_TYPE_SMALL
 import com.frn.frnstore.feature.product.ProductDetailsActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_list_product.*

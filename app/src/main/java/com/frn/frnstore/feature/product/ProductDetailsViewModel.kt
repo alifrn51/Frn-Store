@@ -8,12 +8,18 @@ import com.frn.frnstore.common.FrnSingleObserver
 import com.frn.frnstore.common.asyncNetworkRequest
 import com.frn.frnstore.data.Comment
 import com.frn.frnstore.data.Product
+import com.frn.frnstore.data.repo.CartRepository
 import com.frn.frnstore.data.repo.CommentRepository
+import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
-class ProductDetailsViewModel(bundle: Bundle, commentRepository: CommentRepository) :
+class ProductDetailsViewModel(
+    bundle: Bundle,
+    commentRepository: CommentRepository,
+    val cartRepository: CartRepository
+) :
     FrnViewModel() {
 
     val productLiveData = MutableLiveData<Product>()
@@ -35,4 +41,7 @@ class ProductDetailsViewModel(bundle: Bundle, commentRepository: CommentReposito
                 }
             })
     }
+
+
+    fun onAddProductToCart(): Completable = cartRepository.add(productLiveData.value!!.id).ignoreElement()
 }

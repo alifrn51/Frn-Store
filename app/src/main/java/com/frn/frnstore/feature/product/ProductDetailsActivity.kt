@@ -8,9 +8,7 @@ import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.frn.frnstore.FrnActivity
-import com.frn.frnstore.common.EXTRA_KEY_DATA
-import com.frn.frnstore.common.EXTRA_KEY_ID
-import com.frn.frnstore.common.formatPrice
+import com.frn.frnstore.common.*
 import com.frn.frnstore.data.Comment
 import com.frn.frnstore.databinding.ActivityProductBinding
 import com.frn.frnstore.feature.product.comment.CommentsActivity
@@ -18,12 +16,15 @@ import com.frn.frnstore.services.imageLoading.ImageLoadingService
 import com.frn.frnstore.views.scroll.ObservableScrollView
 import com.frn.frnstore.views.scroll.ObservableScrollViewCallbacks
 import com.frn.frnstore.views.scroll.ScrollState
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_product.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 class ProductDetailsActivity : FrnActivity() {
+
+    val compositeDisposable = CompositeDisposable()
 
     lateinit var activityProductBinding: ActivityProductBinding
     private val productDetailsViewModel: ProductDetailsViewModel by viewModel { parametersOf(intent.extras) }
@@ -93,7 +94,22 @@ class ProductDetailsActivity : FrnActivity() {
 
         }
 
+        addToCart.setOnClickListener {
+            productDetailsViewModel.onAddProductToCart()
+                .asyncNetworkRequest()
+                .subscribe(object : FrnCompletableObserver( compositeDisposable){
+                    override fun onComplete() {
+                        TODO("Not yet implemented")
+                    }
+                })
+        }
 
 
+
+    }
+
+    override fun onDestroy() {
+        compositeDisposable.dispose()
+        super.onDestroy()
     }
 }
